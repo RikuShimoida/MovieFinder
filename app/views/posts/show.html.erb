@@ -1,0 +1,358 @@
+<h1>検索結果</h1>
+
+<div class = "result">
+
+<% if @movies.instance_of?(Array) %>
+
+<% @movies.flatten.uniq.each do |movie| %>
+
+<% if movie != nil %>   
+
+<h4>
+作品名：
+</h4>
+<%= link_to("#{movie.title}", "/posts/about/#{movie.id}") %>
+<%= link_to("作品情報の編集", "/posts/show/#{movie.id}") %>
+<%= link_to("作品情報の削除", "/posts/#{movie.id}/delete") %>
+
+<h4>
+監督名：
+</h4>
+<%= movie.director  %>
+
+<h4>
+出演俳優：
+</h4>
+<%= movie.actor  %>
+<br>
+<br>
+
+
+<div class="parameter_result impressedFlg">
+<% if movie.impressedFlg == "1"  %>
+<p>感動する</p>
+<% end %>
+</div>
+
+<div class="parameter_result loveFlg">
+<% if movie.loveFlg == "1"  %>
+<p>恋愛映画</p>
+<% end %>
+</div>
+
+<div class="parameter_result depressedFlg">
+<% if movie.depressedFlg == "1"  %>
+<p>落ち込んだときに観たい</p>
+<% end %>
+</div>
+
+<div class="parameter_result ForeignFlg">
+<% if movie.ForeignFlg == "1"  %>
+<p>洋画</p>
+<% end %>
+</div>
+
+<div class="parameter_result japanFlg">
+<% if movie.japanFlg == "1"  %>
+<p>邦画</p>
+<% end %>
+</div>
+
+<div class="parameter_result marvelFlg">
+<% if movie.marvelFlg == "1"  %>
+<p>マーベル</p>
+<% end %>
+</div>
+
+<div class="parameter_result dcFlg">
+<% if movie.dcFlg == "1"  %>
+<p>DCコミック</p>
+<% end %>
+</div>
+
+<div class="parameter_result animeFlg">
+<% if movie.animeFlg == "1"  %>
+<p>アニメ作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result specialFlg">
+<% if movie.specialFlg == "1"  %>
+<p>特撮作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result musicalFlg">
+<% if movie.musicalFlg == "1"  %>
+<p>ミュージカル作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result seriesFlg">
+<% if movie.seriesFlg == "1"  %>
+<p>シリーズ作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result sexyFlg">
+<% if movie.sexyFlg == "1"  %>
+<p>セクシー作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result futuristicFlg">
+<% if movie.futuristicFlg == "1"  %>
+<p>近未来的</p>
+<% end %>
+</div>
+
+<div class="parameter_result thrillFlg">
+<% if movie.thrillFlg == "1"  %>
+<p>スリルがある</p>
+<% end %>
+</div>
+
+<div class="parameter_result nonFictionFlg">
+<% if movie.nonFictionFlg == "1"  %>
+<p>ノンフィクション</p>
+<% end %>
+</div>
+
+<div class="parameter_result hintFlg">
+<% if movie.hintFlg == "1"  %>
+<p>伏線あり</p>
+<% end %>
+</div>
+
+<div class="parameter_result mediaFlg">
+<% if movie.mediaFlg == "1"  %>
+<p>書籍のメディア化</p>
+<% end %>
+</div>
+
+<div class="parameter_result supernaturalFlg">
+<% if movie.supernaturalFlg == "1"  %>
+<p>超能力系</p>
+<% end %>
+</div>
+
+<div class="parameter_result disneyFlg">
+<% if movie.disneyFlg == "1"  %>
+<p>ディズニー作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result ghibliFlg">
+<% if movie.ghibliFlg == "1"  %>
+<p>ジブリ作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result usefulFlg">
+<% if movie.usefulFlg == "1"  %>
+<p>人生の役に立つ</p>
+<% end %>
+</div>
+
+<div class="parameter_result mysteriousFlg">
+<% if movie.mysteriousFlg == "1"  %>
+<p>ミステリーが好き</p>
+<% end %>
+</div>
+
+<div class="parameter_result actionFlg">
+<% if movie.actionFlg == "1"  %>
+<p>アクション映画</p>
+<% end %>
+</div>
+
+<div class="parameter_result horrorFlg">
+<% if movie.horrorFlg == "1"  %>
+<p>ホラー映画</p>
+<% end %>
+</div>
+<Hr>
+
+<% end %>
+
+<% end %>
+
+<% else %>
+
+<% @movies.each do |movie| %>
+
+<h4>
+作品名：
+</h4>
+<%= link_to("#{movie.title}", "/posts/about/#{movie.id}") %>
+<%= link_to("作品情報の編集", "/posts/show/#{movie.id}") %>
+<%= link_to("作品情報の削除", "/posts/#{movie.id}/delete") %>
+
+<h4>
+監督名：
+</h4>
+<%= movie.director %>
+
+<h4>
+出演俳優：
+</h4>
+<%= movie.actor  %>
+
+
+<div class="parameter_result impressedFlg">
+<% if movie.impressedFlg == "1"  %>
+<p>感動する</p>
+<% end %>
+</div>
+
+<div class="parameter_result loveFlg">
+<% if movie.loveFlg == "1"  %>
+<p>恋愛映画</p>
+<% end %>
+</div>
+
+<div class="parameter_result depressedFlg">
+<% if movie.depressedFlg == "1"  %>
+<p>落ち込んだときに観たい</p>
+<% end %>
+</div>
+
+<div class="parameter_result ForeignFlg">
+<% if movie.ForeignFlg == "1"  %>
+<p>洋画</p>
+<% end %>
+</div>
+
+<div class="parameter_result japanFlg">
+<% if movie.japanFlg == "1"  %>
+<p>邦画</p>
+<% end %>
+</div>
+
+<div class="parameter_result marvelFlg">
+<% if movie.marvelFlg == "1"  %>
+<p>マーベル</p>
+<% end %>
+</div>
+
+<div class="parameter_result dcFlg">
+<% if movie.dcFlg == "1"  %>
+<p>DCコミック</p>
+<% end %>
+</div>
+
+<div class="parameter_result animeFlg">
+<% if movie.animeFlg == "1"  %>
+<p>アニメ作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result specialFlg">
+<% if movie.specialFlg == "1"  %>
+<p>特撮作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result musicalFlg">
+<% if movie.musicalFlg == "1"  %>
+<p>ミュージカル作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result seriesFlg">
+<% if movie.seriesFlg == "1"  %>
+<p>シリーズ作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result sexyFlg">
+<% if movie.sexyFlg == "1"  %>
+<p>セクシー作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result futuristicFlg">
+<% if movie.futuristicFlg == "1"  %>
+<p>近未来的</p>
+<% end %>
+</div>
+
+<div class="parameter_result thrillFlg">
+<% if movie.thrillFlg == "1"  %>
+<p>スリルがある</p>
+<% end %>
+</div>
+
+<div class="parameter_result nonFictionFlg">
+<% if movie.nonFictionFlg == "1"  %>
+<p>ノンフィクション</p>
+<% end %>
+</div>
+
+<div class="parameter_result hintFlg">
+<% if movie.hintFlg == "1"  %>
+<p>伏線あり</p>
+<% end %>
+</div>
+
+<div class="parameter_result mediaFlg">
+<% if movie.mediaFlg == "1"  %>
+<p>書籍のメディア化</p>
+<% end %>
+</div>
+
+<div class="parameter_result supernaturalFlg">
+<% if movie.supernaturalFlg == "1"  %>
+<p>超能力系</p>
+<% end %>
+</div>
+
+<div class="parameter_result disneyFlg">
+<% if movie.disneyFlg == "1"  %>
+<p>ディズニー作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result ghibliFlg">
+<% if movie.ghibliFlg == "1"  %>
+<p>ジブリ作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result usefulFlg">
+<% if movie.usefulFlg == "1"  %>
+<p>人生の役に立つ</p>
+<% end %>
+</div>
+
+<div class="parameter_result ">
+<% if movie.mysteriousFlg == "1"  %>
+<p>ミステリーが好き</p>
+<% end %>
+</div>
+
+<div class="parameter_result actionFlg">
+<% if movie.actionFlg == "1"  %>
+<p>アクション映画</p>
+<% end %>
+</div>
+
+<div class="parameter_result actionFlg">
+<% if movie.horrorFlg == "1"  %>
+<p>ホラー映画</p>
+<% end %>
+</div>
+
+<Hr>
+
+<% end %>
+
+<% end %>
+
+<%= link_to :back do %>
+    <button>戻る</button>
+<% end %>
+
+
+</div>
+
