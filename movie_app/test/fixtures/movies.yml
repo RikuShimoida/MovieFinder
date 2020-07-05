@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  director: MyString
+  loveFlg: MyString
+  depressedFlg: MyString
+  ForeignFlg: MyString
+  mysteriousFlg: MyString
+  actionFlg: MyString
+  horrorFlg: MyString
+
+two:
+  title: MyString
+  director: MyString
+  loveFlg: MyString
+  depressedFlg: MyString
+  ForeignFlg: MyString
+  mysteriousFlg: MyString
+  actionFlg: MyString
+  horrorFlg: MyString
