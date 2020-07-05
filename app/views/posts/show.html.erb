@@ -1,32 +1,602 @@
-<h1>検索結果</h1>
+<script>
+var urlArray = [];
+var loopCnt = 0;
+var jsonLoop = 0;
+var notFirst = 0;
+
+//var overViewArray = [];
+
+ async function outputJson(url){
+  var process = "";
+  //firstProcess;
+
+   //var tmp = "a";
+   //console.log("firstProcessの返り値　" + firstProcess(url));
+   await firstProcess(url);
+    async function firstProcess(url){
+
+   notFirst = 1;
+
+   var url = url;
+   console.log(loopCnt + "回目の実行で呼び出し元から渡された値↓");
+   console.log(url);
+   console.log("fetch(url)の値　" + fetch(url));
+  return fetch(url)
+
+  .then( response => {
+    console.log(jsonLoop + "回目のfetchで渡された値↓");
+    console.log(url);
+    //console.log("response.jsonの値" + response.json());
+    console.log("渡されたdataの値 " + response);
+    return response.json();
+})
+    .then(data => {
+    //取得したJSONデータの処理
+    console.log("検索データの出力に成功しました");
+    console.log("urlArray[jsonLoop]の値↓");
+    console.log(urlArray[jsonLoop]);
+    console.log("urlArrayの値↓");
+    console.log(urlArray);
+    //data.titleの取得
+    var title = data.results[0].title;
+    console.log("実際に渡ってきたタイトル　" + title);
+    var replaceStr = "https://api.themoviedb.org/3/search/movie?api_key=f10404a45468df92c746003d17f8442f&language=ja-JP&query=";
+    var completeArray = [];
+    urlArray.forEach(function(value){
+      console.log("置換前の文字を順番に出力");
+      console.log(value);
+      var completeStr = value.replace(replaceStr,"");
+      console.log("置換した文字を順番に出力");
+      console.log(completeStr);
+      completeArray.push(completeStr);
+      console.log("最終的な配列");
+      console.log(completeArray);
+    });
+    var num = completeArray.indexOf(title);
+    var jsonIndex = 0;
+    console.log(title + "はcompleteArrayの" + num + "番目にあります");
+    if(num == -1){
+      do{
+      jsonIndex++;
+      console.log("現在のiの値" + jsonIndex);
+      title = data.results[jsonIndex].title;
+      console.log("再度格納したdata.results.titleの値" + title);
+      num = completeArray.indexOf(title);
+      console.log(title + "はcompleteArrayの" + num + "番目にあります");
+      }while(num == -1)
+      
+    }
+    console.log("現在のjsonLoopの値↓");
+    console.log(jsonLoop);
+    console.log("現在のdogの値↓");
+    console.log(dog);
+    console.log("dataの出力↓");
+    console.log(data);
+    console.log("data.resultsの出力↓");
+    console.log(data.results);
+    console.log("data.results[jsonIndex]の出力↓");
+    console.log(data.results[jsonIndex]);
+    console.log("data.results[jsonIndex].overviewの出力↓");
+    console.log(data.results[jsonIndex].overview);
+    //document.getElementsByClassName('overview')[loopCnt].textContent = data.results[0].overview;
+    console.log(num + "個目のoverviewに書き込みます");
+    $(".overview").eq(num).html(data.results[jsonIndex].overview);
+    //overViewArray.push(data.results[0].overview);
+    console.log(data.results[jsonIndex].overview + "をhtmlタグに書き込みました");
+    console.log(data.results[jsonIndex].title + "がタイトル");
+    //console.log(".overviewの値↓");
+    //console.log($(".overview").text());
+    jsonLoop++;
+    //return complete;
+    //tmp = data.results[0].overview;
+    console.log("すべてのメソッドチェーンが終わりました");
+    return complete;
+    });
+}
+
+//return process;
+}
+
+</script>
 
 <div class = "result">
 
 <% if @movies.instance_of?(Array) %>
 
-<% @movies.flatten.uniq.each do |movie| %>
 
-<% if movie != nil %>   
+<% movieArray = [] %>
+<% if @ableFlgArray.size == 2 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 1}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 3 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 2}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 4 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 3}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 5 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 4}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 6 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 5}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 7 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 6}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 8 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 7}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 9 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 8}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 10 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 9}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 11 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 10}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 12 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 11}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 13 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 12}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 14 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 13}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 15 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 14}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 16 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 15}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 17 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 16}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 18 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 17}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 19 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 18}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 20 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 19}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 21 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 20}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 22 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 21}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 23 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 22}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% elsif @ableFlgArray.size == 24 %>
+  <% @movies.flatten.select{|v| @movies.flatten.count(v) > 23}.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% else %>
+  <% @movies.flatten.uniq.each do |movie| %>
+    <% movieArray.push(movie) %>
+  <% end %>
+<% end %>
+
+<% puts "movieArrayの値show　 #{movieArray}" %>
+
+<% if movieArray == [nil] %>
+<div class = "notFound">
+<h2>該当する作品は見つかりませんでした<h2>
+</div>
+<% end %>
+
+<% movieArray.flatten.uniq.each do |movie| %>
+
+<% if movie != nil %>
+
+<div class = "contents">
+
+<div class="chrome" style="padding: 30px 0px 0px 0px; margin-top: 5px;"><span class="bar"> </span>
+<iframe src = "https://www.youtube.com/embed?listType=search&list=<%=movie.title + "　映画予告"%>"  width = "560"  height = "315" frameborder = " 0 " allowfullscreen= "allowfullscreen" ></iframe>
+</div>
 
 <h4>
-作品名：
+【作品名】
 </h4>
-<%= link_to("#{movie.title}", "/posts/about/#{movie.id}") %>
-<%= link_to("作品情報の編集", "/posts/show/#{movie.id}") %>
-<%= link_to("作品情報の削除", "/posts/#{movie.id}/delete") %>
+<div class = "title">
+<%= movie.title %>
+
+</div>
+
+<li class = "itemButton"><%= link_to("作品情報の編集", "/posts/show/#{movie.id}",  method: :get, class: "link") %></li>
+<li class = "itemButton"><u class = "destroy">作品の削除</u></li>
 
 <h4>
-監督名：
+【監督名】
 </h4>
+
+<div class = "director">
 <%= movie.director  %>
+</div><br>
 
 <h4>
-出演俳優：
+【出演俳優】
 </h4>
-<%= movie.actor  %>
-<br>
+<div class = "actor">
+<% actorArray = movie.actor.split(",")  %>
+<%= actorArray[0] %><br><br>
+<%= actorArray[1] %><br><br>
+<%= actorArray[2] %>
+</div>
+
+<h4>
+【あらすじ】
+</h4>
+<div class = "overview">
+
+</div>
 <br>
 
+<script>
+//loopCnt++;
+console.log("movieがnullじゃないときの処理が走ります");
+console.log("①urlArrayの値↓ ");
+console.log(urlArray);
+console.log("title.textの値↓");
+console.log($(".title").text());
+console.log("rubyのコード埋め込み↓");
+console.log("<%=movie.title%>");
+var dog = "<%=movie.title%>"
+console.log("ruby埋め込みで取得したdogの値↓");
+//var dog = $(".title").text();//指定した要素が持つvalue値を取得
+//console.log("テキストで取得したdogの値↓");
+console.log(dog);
+var searchURL = "https://api.themoviedb.org/3/search/movie?api_key=f10404a45468df92c746003d17f8442f&language=ja-JP&query=" + dog;
+console.log("searchURLの値↓");
+console.log(searchURL);
+urlArray.push(searchURL);
+console.log("② urlArrayの値↓");
+console.log(urlArray);
+dog = "";
+console.log("dogを初期化↓");
+console.log(dog);
+//$(".title").text(""); 
+console.log("title.textを初期化↓");
+console.log($(".title").text());
+
+//outputJson(loopCnt);
+//var tmp = outputJson(urlArray[loopCnt]);
+console.log("これからこれをメソッドに代入する↓");
+console.log(urlArray[loopCnt]);
+
+if(notFirst == 0){
+  (async ()=>{
+console.log("最初の実行でメソッドに渡す値↓");
+console.log(urlArray[loopCnt]);
+await outputJson(urlArray[loopCnt]);
+}).call()
+}else{
+       (async ()=>{
+          console.log("前回のoutputJsonが終わったので次を処理します。そのときのあらすじは↓");
+          console.log($(".overview").text());
+          console.log(loopCnt + "回目の実行でoutputJsonに渡すループカウント↓と、url↓");
+          //console.log(loopCnt);
+          console.log(urlArray[loopCnt]);
+          //console.log("outputJsonの実行によるreturn値　" + outputJson(urlArray[loopCnt]));
+           await outputJson(urlArray[loopCnt])
+      }).call()
+}
+//console.log("関数を読んで返ってきたoutputJson(loopCnt)の値↓");
+//console.log(tmp);
+//$(".overview").html("abc");
+//console.log("overViewArray[loopCnt]の値↓")
+//console.log(overViewArray[loopCnt]);
+//$(".overview").html(overViewArray[loopCnt]);
+loopCnt++;
+
+</script>
+
+<div class="parameter_result impressedFlg">
+<% if movie.impressedFlg == "1"  %>
+<p>感動する</p>
+<% end %>
+</div>
+
+<div class="parameter_result loveFlg">
+<% if movie.loveFlg == "1"  %>
+<p>恋愛映画</p>
+<% end %>
+</div>
+
+<div class="parameter_result depressedFlg">
+<% if movie.depressedFlg == "1"  %>
+<p>落ち込んだときに観たい</p>
+<% end %>
+</div>
+
+<div class="parameter_result ForeignFlg">
+<% if movie.ForeignFlg == "1"  %>
+<p>洋画</p>
+<% end %>
+</div>
+
+<div class="parameter_result japanFlg">
+<% if movie.japanFlg == "1"  %>
+<p>邦画</p>
+<% end %>
+</div>
+
+<div class="parameter_result marvelFlg">
+<% if movie.marvelFlg == "1"  %>
+<p>マーベル</p>
+<% end %>
+</div>
+
+<div class="parameter_result dcFlg">
+<% if movie.dcFlg == "1"  %>
+<p>DCコミック</p>
+<% end %>
+</div>
+
+<div class="parameter_result animeFlg">
+<% if movie.animeFlg == "1"  %>
+<p>アニメ作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result specialFlg">
+<% if movie.specialFlg == "1"  %>
+<p>特撮作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result musicalFlg">
+<% if movie.musicalFlg == "1"  %>
+<p>ミュージカル作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result seriesFlg">
+<% if movie.seriesFlg == "1"  %>
+<p>シリーズ作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result sexyFlg">
+<% if movie.sexyFlg == "1"  %>
+<p>セクシー作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result futuristicFlg">
+<% if movie.futuristicFlg == "1"  %>
+<p>近未来的</p>
+<% end %>
+</div>
+
+<div class="parameter_result thrillFlg">
+<% if movie.thrillFlg == "1"  %>
+<p>スリルがある</p>
+<% end %>
+</div>
+
+<div class="parameter_result nonFictionFlg">
+<% if movie.nonFictionFlg == "1"  %>
+<p>ノンフィクション</p>
+<% end %>
+</div>
+
+<div class="parameter_result hintFlg">
+<% if movie.hintFlg == "1"  %>
+<p>伏線あり</p>
+<% end %>
+</div>
+
+<div class="parameter_result mediaFlg">
+<% if movie.mediaFlg == "1"  %>
+<p>書籍のメディア化</p>
+<% end %>
+</div>
+
+<div class="parameter_result supernaturalFlg">
+<% if movie.supernaturalFlg == "1"  %>
+<p>超能力系</p>
+<% end %>
+</div>
+
+<div class="parameter_result disneyFlg">
+<% if movie.disneyFlg == "1"  %>
+<p>ディズニー作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result ghibliFlg">
+<% if movie.ghibliFlg == "1"  %>
+<p>ジブリ作品</p>
+<% end %>
+</div>
+
+<div class="parameter_result usefulFlg">
+<% if movie.usefulFlg == "1"  %>
+<p>人生の役に立つ</p>
+<% end %>
+</div>
+
+<div class="parameter_result mysteriousFlg">
+<% if movie.mysteriousFlg == "1"  %>
+<p>ミステリーが好き</p>
+<% end %>
+</div>
+
+<div class="parameter_result actionFlg">
+<% if movie.actionFlg == "1"  %>
+<p>アクション映画</p>
+<% end %>
+</div>
+
+<div class="parameter_result horrorFlg">
+<% if movie.horrorFlg == "1"  %>
+<p>ホラー映画</p>
+<% end %>
+</div>
+<Hr>
+<div class="container" id = "confirm">
+    <!-- ログインのモーダル部分のHTMLを貼り付けてください -->
+    <div class="modal">
+      <div id="login-form">
+        <h2><%= movie.title %>を本当に削除しますか？</h2>
+        <button class ="close">キャンセル</button>
+      <div class = "destroyBtn">
+        <%= button_to("OK", "/posts/#{movie.id}/delete", method: :get, class: "okBtn") %>
+        </div>
+      </div>
+    </div>
+</div>
+
+</div>
+
+
+<% end %>
+
+<% end %>
+
+<% else %>
+
+<% if @movies[0] == nil %>
+<div class = "notFound">
+<h2>該当する作品は見つかりませんでした<h2>
+</div>
+<% end %>
+
+<% @movies.each do |movie| %>
+
+  <div class = "contents">
+
+  <div class="chrome" style="padding: 30px 0px 0px 0px; margin-top: 5px;"><span class="bar"> </span>
+<iframe src = "https://www.youtube.com/embed?listType=search&list=<%=movie.title + "　映画予告"%>"  width = "560"  height = "315" frameborder = " 0 " allowfullscreen= "allowfullscreen" ></iframe>
+</div>
+
+
+  <h4>
+【作品名】
+</h4>
+<div class = "title">
+<%= movie.title %>
+
+</div>
+
+<li class = "itemButton"><%= link_to("作品情報の編集", "/posts/show/#{movie.id}",  method: :get, class: "link") %></li>
+<li class = "itemButton"><u class = "destroy">作品の削除</u></li>
+
+
+
+
+<h4>
+【監督名】
+</h4>
+
+
+<div class = "director">
+<%= movie.director  %>
+</div><br>
+
+<h4>
+【出演俳優】
+</h4>
+<div class = "actor">
+<% actorArray = movie.actor.split(",")  %>
+<%= actorArray[0] %><br><br>
+<%= actorArray[1] %><br><br>
+<%= actorArray[2] %>
+</div>
+
+<h4>
+【あらすじ】
+</h4>
+<div class = "overview">
+
+</div>
+<br>
+
+<script>
+//loopCnt++;
+console.log("movieがnullじゃないときの処理が走ります");
+console.log("①urlArrayの値↓ ");
+console.log(urlArray);
+console.log("title.textの値↓");
+console.log($(".title").text());
+console.log("rubyのコード埋め込み↓");
+console.log("<%=movie.title%>");
+var dog = "<%=movie.title%>"
+console.log("ruby埋め込みで取得したdogの値↓");
+//var dog = $(".title").text();//指定した要素が持つvalue値を取得
+//console.log("テキストで取得したdogの値↓");
+console.log(dog);
+var searchURL = "https://api.themoviedb.org/3/search/movie?api_key=f10404a45468df92c746003d17f8442f&language=ja-JP&query=" + dog;
+console.log("searchURLの値↓");
+console.log(searchURL);
+urlArray.push(searchURL);
+console.log("② urlArrayの値↓");
+console.log(urlArray);
+dog = "";
+console.log("dogを初期化↓");
+console.log(dog);
+//$(".title").text(""); 
+console.log("title.textを初期化↓");
+console.log($(".title").text());
+
+//outputJson(loopCnt);
+//var tmp = outputJson(urlArray[loopCnt]);
+console.log("これからこれをメソッドに代入する↓");
+console.log(urlArray[loopCnt]);
+
+if(notFirst == 0){
+  (async ()=>{
+console.log("最初の実行でメソッドに渡す値↓");
+console.log(urlArray[loopCnt]);
+await outputJson(urlArray[loopCnt]);
+}).call()
+}else{
+       (async ()=>{
+          console.log("前回のoutputJsonが終わったので次を処理します。そのときのあらすじは↓");
+          console.log($(".overview").text());
+          console.log(loopCnt + "回目の実行でoutputJsonに渡すループカウント↓と、url↓");
+          //console.log(loopCnt);
+          console.log(urlArray[loopCnt]);
+          //console.log("outputJsonの実行によるreturn値　" + outputJson(urlArray[loopCnt]));
+           await outputJson(urlArray[loopCnt])
+      }).call()
+}
+//console.log("関数を読んで返ってきたoutputJson(loopCnt)の値↓");
+//console.log(tmp);
+//$(".overview").html("abc");
+//console.log("overViewArray[loopCnt]の値↓")
+//console.log(overViewArray[loopCnt]);
+//$(".overview").html(overViewArray[loopCnt]);
+loopCnt++;
+
+</script>
 
 <div class="parameter_result impressedFlg">
 <% if movie.impressedFlg == "1"  %>
@@ -173,186 +743,31 @@
 </div>
 <Hr>
 
-<% end %>
-
-<% end %>
-
-<% else %>
-
-<% @movies.each do |movie| %>
-
-<h4>
-作品名：
-</h4>
-<%= link_to("#{movie.title}", "/posts/about/#{movie.id}") %>
-<%= link_to("作品情報の編集", "/posts/show/#{movie.id}") %>
-<%= link_to("作品情報の削除", "/posts/#{movie.id}/delete") %>
-
-<h4>
-監督名：
-</h4>
-<%= movie.director %>
-
-<h4>
-出演俳優：
-</h4>
-<%= movie.actor  %>
-
-
-<div class="parameter_result impressedFlg">
-<% if movie.impressedFlg == "1"  %>
-<p>感動する</p>
-<% end %>
+<div class="container" id = "confirm">
+    <!-- ログインのモーダル部分のHTMLを貼り付けてください -->
+    <div class="modal">
+      <div id="login-form">
+        <h2><%= movie.title %>を本当に削除しますか？</h2>
+        <button class ="close">キャンセル</button>
+      <div class = "destroyBtn">
+        <%= button_to("OK", "/posts/#{movie.id}/delete", method: :get, class: "okBtn") %>
+        </div>
+      </div>
+    </div>
 </div>
 
-<div class="parameter_result loveFlg">
-<% if movie.loveFlg == "1"  %>
-<p>恋愛映画</p>
+  <% end %>
 <% end %>
-</div>
-
-<div class="parameter_result depressedFlg">
-<% if movie.depressedFlg == "1"  %>
-<p>落ち込んだときに観たい</p>
-<% end %>
-</div>
-
-<div class="parameter_result ForeignFlg">
-<% if movie.ForeignFlg == "1"  %>
-<p>洋画</p>
-<% end %>
-</div>
-
-<div class="parameter_result japanFlg">
-<% if movie.japanFlg == "1"  %>
-<p>邦画</p>
-<% end %>
-</div>
-
-<div class="parameter_result marvelFlg">
-<% if movie.marvelFlg == "1"  %>
-<p>マーベル</p>
-<% end %>
-</div>
-
-<div class="parameter_result dcFlg">
-<% if movie.dcFlg == "1"  %>
-<p>DCコミック</p>
-<% end %>
-</div>
-
-<div class="parameter_result animeFlg">
-<% if movie.animeFlg == "1"  %>
-<p>アニメ作品</p>
-<% end %>
-</div>
-
-<div class="parameter_result specialFlg">
-<% if movie.specialFlg == "1"  %>
-<p>特撮作品</p>
-<% end %>
-</div>
-
-<div class="parameter_result musicalFlg">
-<% if movie.musicalFlg == "1"  %>
-<p>ミュージカル作品</p>
-<% end %>
-</div>
-
-<div class="parameter_result seriesFlg">
-<% if movie.seriesFlg == "1"  %>
-<p>シリーズ作品</p>
-<% end %>
-</div>
-
-<div class="parameter_result sexyFlg">
-<% if movie.sexyFlg == "1"  %>
-<p>セクシー作品</p>
-<% end %>
-</div>
-
-<div class="parameter_result futuristicFlg">
-<% if movie.futuristicFlg == "1"  %>
-<p>近未来的</p>
-<% end %>
-</div>
-
-<div class="parameter_result thrillFlg">
-<% if movie.thrillFlg == "1"  %>
-<p>スリルがある</p>
-<% end %>
-</div>
-
-<div class="parameter_result nonFictionFlg">
-<% if movie.nonFictionFlg == "1"  %>
-<p>ノンフィクション</p>
-<% end %>
-</div>
-
-<div class="parameter_result hintFlg">
-<% if movie.hintFlg == "1"  %>
-<p>伏線あり</p>
-<% end %>
-</div>
-
-<div class="parameter_result mediaFlg">
-<% if movie.mediaFlg == "1"  %>
-<p>書籍のメディア化</p>
-<% end %>
-</div>
-
-<div class="parameter_result supernaturalFlg">
-<% if movie.supernaturalFlg == "1"  %>
-<p>超能力系</p>
-<% end %>
-</div>
-
-<div class="parameter_result disneyFlg">
-<% if movie.disneyFlg == "1"  %>
-<p>ディズニー作品</p>
-<% end %>
-</div>
-
-<div class="parameter_result ghibliFlg">
-<% if movie.ghibliFlg == "1"  %>
-<p>ジブリ作品</p>
-<% end %>
-</div>
-
-<div class="parameter_result usefulFlg">
-<% if movie.usefulFlg == "1"  %>
-<p>人生の役に立つ</p>
-<% end %>
-</div>
-
-<div class="parameter_result ">
-<% if movie.mysteriousFlg == "1"  %>
-<p>ミステリーが好き</p>
-<% end %>
-</div>
-
-<div class="parameter_result actionFlg">
-<% if movie.actionFlg == "1"  %>
-<p>アクション映画</p>
-<% end %>
-</div>
-
-<div class="parameter_result actionFlg">
-<% if movie.horrorFlg == "1"  %>
-<p>ホラー映画</p>
-<% end %>
-</div>
-
-<Hr>
-
-<% end %>
-
-<% end %>
-
-<%= link_to :back do %>
-    <button>戻る</button>
-<% end %>
-
 
 </div>
+</div>
 
+<script>
+$(".destroy").click(function(){
+    $("#confirm").fadeIn("normal");
+});
+
+$(".close").click(function(){
+    $("#confirm").fadeOut("normal");
+})
+</script>

@@ -1,6 +1,20 @@
 class PostsController < ApplicationController
+
+  require 'rubygems'
+    require 'google/apis/youtube_v3'
+    require 'trollop'
+
+    API_KEY = 'AIzaSyBcNIga6Ywde0HAwcUW0zkI_nRmD75MOf0'
+    YOUTUBE_API_SERVICE_NAME = 'youtube'
+    YOUTUBE_API_VERSION = 'v3'
+    def get_service
+        youtube = Google::Apis::YoutubeV3::YouTubeService.new
+        youtube.key = API_KEY
+        return youtube
+    end
+
+  
   def index
-    
   end
 
   def new
@@ -23,6 +37,7 @@ class PostsController < ApplicationController
   end
 
   def show
+
     
     if params[:title] != nil
     @movies = Movie.where("title LIKE ?", "%#{params[:title]}%")
@@ -31,7 +46,7 @@ class PostsController < ApplicationController
       if movie.title == nil
         flash[:notice] = '検索結果は見つかりませんでした'
       end
-    
+
     end
     
   end
@@ -143,27 +158,56 @@ class PostsController < ApplicationController
     if params[:impressedFlg] != nil || params[:loveFlg] != nil || params[:depressedFlg] != nil || params[:ForeignFlg] != nil || params[:japanFlg]  != nil || params[:marvelFlg] != nil || params[:dcFlg] != nil || params[:animeFlg] != nil || params[:specialFlg] != nil || params[:musicalFlg] != nil || params[:seriesFlg] != nil || params[:sexyFlg] != nil || params[:futuristicFlg] != nil || params[:thrillFlg] != nil || params[:nonFictionFlg] != nil || params[:hintFlg] != nil || params[:mediaFlg] != nil || params[:supernaturalFlg] != nil || params[:disneyFlg] != nil || params[:ghibliFlg] != nil || params[:usefulFlg] != nil || params[:mysteriousFlg] != nil || params[:actionFlg] != nil || params[:horrorFlg] != nil
     @movies = [@impressed, @love, @depre, @fore, @japan, @marvel, @dc, @anime, @special, @musical, @series, @sexy, @futurist, @thrill, @nonFiction, @hint, @media, @supernatural, @disney, @ghibli, @useful, @mystery, @action, @horror]
     end
-    
+    @ableFlgArray = []
+    flgArray = [params[:impressedFlg],params[:loveFlg],params[:depressedFlg],params[:ForeignFlg],params[:japanFlg] ,params[:marvelFlg],params[:dcFlg],params[:animeFlg],params[:specialFlg],params[:musicalFlg],params[:seriesFlg],params[:sexyFlg],params[:futuristicFlg],params[:thrillFlg],params[:nonFictionFlg],params[:hintFlg],params[:mediaFlg],params[:supernaturalFlg],params[:disneyFlg],params[:ghibliFlg],params[:usefulFlg],params[:mysteriousFlg],params[:actionFlg],params[:horrorFlg]]
+    puts "flgArrayの値　#{flgArray}"
+    flgArray.each do |flg|
+      if flg == "1"
+        @ableFlgArray.push(flg)
+      end
+    end
+    puts "ableFlgArrayの値　#{@ableFlgArray}"
+    puts "ableFlgArrayのサイズ　#{@ableFlgArray.size}"
   end
 
   def title
+    if params[:title] == ""
+      @error_message = "作品名を入力してください"
+      render "index"
+    else
     #@movies = Movie.where("title LIKE ?", "%#{params[:title]}%")
     redirect_to action: "show", title: params[:title]
+    end
   end
     
 
   def director
+    if params[:director] == ""
+      @error_message = "監督名を入力してください"
+      render "index"
+    else
     #@movies = Movie.where(director:params[:director])
     redirect_to action: "show", director: params[:director]
+    end
   end
 
   def actor
+    if params[:actor] == ""
+      @error_message = "俳優名を入力してください"
+      render "index"
+    else
     #@movies = Movie.where(director:params[:actor])
     redirect_to action: "show", actor: params[:actor]
+    end
   end
 
   def parameter
-    redirect_to action: "show", impressedFlg: params[:impressedFlg], loveFlg: params[:loveFlg], depressedFlg: params[:depressedFlg], ForeignFlg: params[:ForeignFlg], japanFlg: params[:japanFlg], marvelFlg: params[:marvelFlg], dcFlg: params[:dcFlg], animeFlg: params[:animeFlg], specialFlg: params[:specialFlg], musicalFlg: params[:musicalFlg], seriesFlg: params[:seriesFlg], sexyFlg: params[:sexyFlg], futuristicFlg: params[:futuristicFlg], thrillFlg: params[:thrillFlg], nonFictionFlg: params[:nonFictionFlg], hintFlg: params[:hintFlg], mediaFlg: params[:mediaFlg], supernaturalFlg: params[:supernaturalFlg], disneyFlg: params[:disneyFlg], ghibliFlg: params[:ghibliFlg], usefulFlg: params[:usefulFlg], mysteriousFlg: params[:mysteriousFlg], actionFlg: params[:actionFlg], horrorFlg: params[:horrorFlg]
+    if params[:impressedFlg] == nil && params[:loveFlg] == nil && params[:depressedFlg] == nil && params[:ForeignFlg] == nil && params[:japanFlg] == nil && params[:marvelFlg] == nil && params[:dcFlg] == nil && params[:animeFlg] == nil && params[:specialFlg] == nil && params[:musicalFlg] == nil && params[:seriesFlg] == nil && params[:sexyFlg] == nil && params[:futuristicFlg] == nil && params[:thrillFlg] == nil && params[:nonFictionFlg] == nil && params[:hintFlg] == nil && params[:mediaFlg] == nil && params[:supernaturalFlg] == nil && params[:disneyFlg] == nil && params[:ghibliFlg] == nil && params[:usefulFlg] == nil && params[:mysteriousFlg] == nil && params[:actionFlg] == nil && params[:horrorFlg] == nil
+      @error_message = "今の気分を入力してください"
+      render "index"
+    else
+      redirect_to action: "show", impressedFlg: params[:impressedFlg], loveFlg: params[:loveFlg], depressedFlg: params[:depressedFlg], ForeignFlg: params[:ForeignFlg], japanFlg: params[:japanFlg], marvelFlg: params[:marvelFlg], dcFlg: params[:dcFlg], animeFlg: params[:animeFlg], specialFlg: params[:specialFlg], musicalFlg: params[:musicalFlg], seriesFlg: params[:seriesFlg], sexyFlg: params[:sexyFlg], futuristicFlg: params[:futuristicFlg], thrillFlg: params[:thrillFlg], nonFictionFlg: params[:nonFictionFlg], hintFlg: params[:hintFlg], mediaFlg: params[:mediaFlg], supernaturalFlg: params[:supernaturalFlg], disneyFlg: params[:disneyFlg], ghibliFlg: params[:ghibliFlg], usefulFlg: params[:usefulFlg], mysteriousFlg: params[:mysteriousFlg], actionFlg: params[:actionFlg], horrorFlg: params[:horrorFlg]
+    end
   end
 
   def edit
@@ -175,12 +219,21 @@ class PostsController < ApplicationController
     @movie.delete
     redirect_to("/")
     flash[:notice] = "作品情報を削除しました" 
+    puts "flash[:notice]の値　#{flash[:notice]}"
   end
 
   def update
     @movie = Movie.find_by(id:params[:id])
     @movie.title = params[:title]
     @movie.director = params[:director]
+    if params[:actor2] == nil && params[:actor3] == nil
+      actor = params[:actor1]
+    elsif params[:actor3] == ""
+      actor = params[:actor1] + "," + params[:actor2]
+    else
+      actor = params[:actor1] + "," + params[:actor2] + "," + params[:actor3]
+    end
+    @movie.actor = actor
     @movie.impressedFlg = params[:impressedFlg]
     @movie.loveFlg = params[:loveFlg]
     @movie.depressedFlg = params[:depressedFlg]
@@ -216,6 +269,7 @@ class PostsController < ApplicationController
 
   def about
     @movie = Movie.find_by(id:params[:id])
+    logger.debug("変数の中身 #{@movie.title}")
   end
       
       

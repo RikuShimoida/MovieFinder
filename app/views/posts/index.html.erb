@@ -1,95 +1,119 @@
-<h1>映画検索</h1>
+<div id="container" class="container">
+            <ul class="horizontal_scroll" id="horizontal_scroll_nowPlaying">
+            </ul>
+            <p class = "firstP">
+            <span style="color:white">本当に今観たいベストな一本をさがす</span>
+            </p>
+            <!--<p class = "secondP">一本の映画が、人の人生を変えてしまうことがあります。<br>
+            死ぬまでにそんな一本に出会えたら、それからのあなたの人生は今よりももっと濃くなっていくでしょう。<br>
+            このアプリは、そんな運命の一本とあなたをマッチングさせることをサポートするために開発しました。
+            </p>-->
+        </section>
+</div>
 
 <div class = "description">
-<h2>
-<span style="color:white">あなたにとってベストな映画体験を</span>
-</h2>
-<h3>一本の映画が、人の人生を変えてしまうことがある。<br>
-死ぬまでにそんな一本に出会えたら、それからの人生は今よりももっと濃くなっていくだろう。<br>
-このアプリは、そんな運命の一本とあなたをマッチングさせることをサポートするために開発しました。
-</h4>
 </div>
 
 <div class = "parameters">
 
+<% if @error_message %>
+
+    <div class = "form-error">
+
+        <%= @error_message %>
+    </div>
+
+<% end %>
+
+<% if flash[:notice]  %>
+<div class = "flash">
+<%= flash[:notice] %>
+</div>
+<% end %>
+
+<li>
 <%= form_tag("/posts/show/title", method: "get") do %>
 
 <h4>
-作品名：
+作品名で検索
 </h4>
-<textarea name = "title"></textarea>
-<input type="submit" name="submit" value="タイトルで検索">
+<%= text_field_tag :search, nil, placeholder: '作品名を入力', name: 'title' %>
+<%= submit_tag '検索', :name => nil %>
 <% end %>
 
+</li>
 
-<p>
-
+<li>
 <%= form_tag("/posts/show/director", method: "get") do %>
 <h4>
-監督名：
+監督名で検索
 </h4>
-<textarea name = "director"></textarea>
-<input type="submit" name="submit" value="監督で検索">
+<%= text_field_tag :search, nil, placeholder: '監督名を入力', name: 'director' %>
+<%= submit_tag '検索', :name => nil %>
 <% end %>
-</p>
 
-<p>
+</li>
 
+
+
+<li>
 <%= form_tag("/posts/show/actor", method: "get") do %>
 <h4>
-俳優名：
+俳優名で検索
 </h4>
-<textarea name = "actor"></textarea>
-<input type="submit" name="submit" value="俳優で検索">
+<%= text_field_tag :search, nil, placeholder: '俳優名を入力', name: 'actor' %>
+<%= submit_tag '検索', :name => nil %>
 <% end %>
-</p>
 
+</li>
 
 <p>
 
 <%= form_tag("/posts/show/parameter", method: "get") do %>
+<h4>
+今の気分で検索
+</h4>
 
-
-
-<input type="checkbox" name="impressedFlg" value="1">感動したい<br>
-<input type="checkbox" name="loveFlg" value="1">恋愛したい<br>
-<input type="checkbox" name="depressedFlg" value="1">落ち込んでいるときに見たい<br>
-<input type="checkbox" name="ForeignFlg" value="1">洋画が好き<br>
-<input type="checkbox" name="japanFlg" value="1">邦画が好き<br>
-<input type="checkbox" name="marvelFlg" value="1">マーベルが好き<br>
-<input type="checkbox" name="dcFlg" value="1">DCコミックが好き<br>
-<input type="checkbox" name="animeFlg" value="1">アニメ作品<br>
-<input type="checkbox" name="specialFlg" value="1">特撮作品<br>
-<input type="checkbox" name="musicalFlg" value="1">ミュージカル映画<br>
-<input type="checkbox" name="seriesFlg" value="1">シリーズもの<br>
-<input type="checkbox" name="sexyFlg" value="1">セクシー<br>
-<input type="checkbox" name="futuristicFlg" value="1">近未来的<br>
-<input type="checkbox" name="thrillFlg" value="1">スリルがある<br>
-<input type="checkbox" name="nonFictionFlg" value="1">ノンフィクション<br>
-<input type="checkbox" name="hintFlg" value="1">伏線が楽しめる<br>
-<input type="checkbox" name="mediaFlg" value="1">書籍のメディア化<br>
-<input type="checkbox" name="supernaturalFlg" value="1">超能力系<br>
-<input type="checkbox" name="disneyFlg" value="1">ディズニーが好き<br>
-<input type="checkbox" name="ghibliFlg" value="1">ジブリが好き<br>
-<input type="checkbox" name="usefulFlg" value="1">人生の役に立つ<br>
-<input type="checkbox" name="mysteriousFlg" value="1">ミステリアスな話が好き<br>
-<input type="checkbox" name="actionFlg" value="1">アクションが好き<br>
-<input type="checkbox" name="horrorFlg" value="1">ホラーものが好き<br>
-
+<div class = "feeling">
+<label class="checkbox-inline"><input type="checkbox" name="impressedFlg" value="1">感動したい</label>
+<label class="checkbox-inline"><input type="checkbox" name="loveFlg" value="1">恋愛</label>
+<label class="checkbox-inline"><input type="checkbox" name="depressedFlg" value="1">落ち込んでいるときに見たい</label>
+<label class="checkbox-inline"><input type="checkbox" name="ForeignFlg" value="1">洋画が好き</label>
+<label class="checkbox-inline"><input type="checkbox" name="japanFlg" value="1">邦画が好き</label>
+<label class="checkbox-inline"><input type="checkbox" name="marvelFlg" value="1">マーベルが好き</label>
+<label class="checkbox-inline"><input type="checkbox" name="dcFlg" value="1">DCコミックが好き</label>
+<label class="checkbox-inline"><input type="checkbox" name="animeFlg" value="1">アニメ作品</label>
+<label class="checkbox-inline"><input type="checkbox" name="specialFlg" value="1">特撮作品</label>
+<label class="checkbox-inline"><input type="checkbox" name="musicalFlg" value="1">ミュージカル映画</label>
+<label class="checkbox-inline"><input type="checkbox" name="seriesFlg" value="1">シリーズもの</label>
+<label class="checkbox-inline"><input type="checkbox" name="sexyFlg" value="1">セクシー</label>
+<label class="checkbox-inline"><input type="checkbox" name="futuristicFlg" value="1">近未来的</label>
+<label class="checkbox-inline"><input type="checkbox" name="thrillFlg" value="1">スリルがある</label>
+<label class="checkbox-inline"><input type="checkbox" name="nonFictionFlg" value="1">ノンフィクション</label>
+<label class="checkbox-inline"><input type="checkbox" name="hintFlg" value="1">伏線が楽しめる</label>
+<label class="checkbox-inline"><input type="checkbox" name="mediaFlg" value="1">書籍のメディア化</label>
+<label class="checkbox-inline"><input type="checkbox" name="supernaturalFlg" value="1">超能力系</label>
+<label class="checkbox-inline"><input type="checkbox" name="disneyFlg" value="1">ディズニーが好き</label>
+<label class="checkbox-inline"><input type="checkbox" name="ghibliFlg" value="1">ジブリが好き</label>
+<label class="checkbox-inline"><input type="checkbox" name="usefulFlg" value="1">人生の役に立つ</label>
+<label class="checkbox-inline"><input type="checkbox" name="mysteriousFlg" value="1">ミステリアスな話が好き</label>
+<label class="checkbox-inline"><input type="checkbox" name="actionFlg" value="1">アクションが好き</label>
+<label class="checkbox-inline"><input type="checkbox" name="horrorFlg" value="1">ホラーものが好き</label>
+</div>
 <p>
-<input type="submit" name="submit" value="今の気分から検索">
+<input type="submit" name="submit" value="検索">
 </p>
 
 <% end %>
 </p>
-
-
-
-
-<%= form_tag("/posts/new", method: "get") do %>
-
-
-<input type="submit" name="submit" value="映画の新規登録">
-<% end %>
 
 </div>
+
+<script>
+console.log("index.html.erbが読み込まれました");
+$('.firstP').fadeIn(4000);
+//$('.secondP').fadeIn(5000);
+$('.firstP').fadeOut(1000);
+//$('.secondP').fadeOut(1000);
+$('.horizontal_scroll').fadeIn(5000);
+</script>

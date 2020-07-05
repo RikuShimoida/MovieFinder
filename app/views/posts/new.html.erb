@@ -1,28 +1,32 @@
-<h1>登録画面</h1>
+<h1>　登録画面</h1>
+
+<div class = "contents">
 
 <%= form_tag("/posts/create", method: "post") do %>
 
+
 <h4>
-作品名：
+【作品名】
 </h4>
-<textarea name = "title"></textarea>
+<input type="text" name="title">
 
 <p>
 <h4>
-監督名：
+【監督名】
 </h4>
-<textarea name = "director"></textarea>
+<input type="text" name="director">
 </p>
 
 <p>
 <h4>
-出演俳優：
+【出演俳優】
 </h4>
-<textarea name = "actor1"></textarea>
-<textarea name = "actor2"></textarea>
-<textarea name = "actor3"></textarea>
+<input type="text" name="actor1">
+<input type="text" name="actor2">
+<input type="text" name="actor3">
 </p>
 
+<div class = parameters>
 <input type="checkbox" name="impressedFlg" value="1">感動したい<br>
 <input type="checkbox" name="loveFlg" value="1">恋愛したい<br>
 <input type="checkbox" name="depressedFlg" value="1">落ち込んでいるときに見たい<br>
@@ -47,13 +51,11 @@
 <input type="checkbox" name="mysteriousFlg" value="1">ミステリアスな話が好き<br>
 <input type="checkbox" name="actionFlg" value="1">アクションが好き<br>
 <input type="checkbox" name="horrorFlg" value="1">ホラーものが好き<br>
+</div>
 
 <p>
-<input type="submit" name="submit" value="保存">
+<input class = "save" type="submit" name="submit" value="保存">
 </p>
 
-<%= link_to :back do %>
-    <button>戻る</button>
-  <% end %>
-
+<div>
 <% end %>

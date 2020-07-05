@@ -1,22 +1,36 @@
-<h1>編集画面</h1>
+<h1>　編集画面</h1>
+
+<div class = "contents">
 
 <%= form_tag("/posts/#{@movie.id}/update", method: "post") do %>
 
 <h4>
 作品名：
-</h4>    
-<textarea name = "title"><%= @movie.title %></textarea>
+</h4>
+<input type="text" value = "<%= @movie.title %>" name="title">
 
 <p>
 <h4>
 監督名：
 </h4>
-<textarea name = "director"><%= @movie.director %></textarea>
+<input type="text" value = "<%= @movie.director %>" name="director">
+</p>
+
+<% actorArray = @movie.actor.split(",")  %>
+
+<p>
+<h4>
+【出演俳優】
+</h4>
+<input type="text" value = "<%= actorArray[0] %>" name="actor1">
+<input type="text" value = "<%= actorArray[1] %>" name="actor2">
+<input type="text" value = "<%= actorArray[2] %>" name="actor3">
 </p>
 
 
 
 
+<div class = "parameters">
 <input type="checkbox" name="impressedFlg" value="1">感動したい<br>
 <input type="checkbox" name="loveFlg" value="1">恋愛したい<br>
 <input type="checkbox" name="depressedFlg" value="1">落ち込んでいるときに見たい<br>
@@ -41,14 +55,12 @@
 <input type="checkbox" name="mysteriousFlg" value="1">ミステリアスな話が好き<br>
 <input type="checkbox" name="actionFlg" value="1">アクションが好き<br>
 <input type="checkbox" name="horrorFlg" value="1">ホラーものが好き<br>
-
+</div>
 
 <p>
 <input type="submit" name="submit" value="保存">
 </p>
 
-<%= link_to :back do %>
-    <button>戻る</button>
-  <% end %>
+</div>
 
 <% end %>

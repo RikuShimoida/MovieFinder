@@ -5,16 +5,29 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <body>
+    <header>
+
+    <div class = "header_param">
+    <li><h1 class = "headerTitle">MovieFinder</h1></li>
+    <li class = "headSearch"><%= link_to_unless_current "作品の検索", "/", class: "header_btn", action: :current, data: {"turbolinks" => false } %></li>
+    <li class = "headRegist"><%= link_to_unless_current "作品の新規登録", "/posts/new", class: "header_btn", action: :current, data: {"turbolinks" => false } %></li>
+    </div>
+
+    </header>
+
+    </body>
+
+    <%= include_gon %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <%= yield %>
-
-
     <% if flash[:notice] %>
     <%= flash[:notice] %>
     <% end %>
   </body>
 </html>
+
