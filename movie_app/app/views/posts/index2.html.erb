@@ -1,0 +1,13 @@
+<h1 class="text-center font-weight-bold">ŒŸõŒ‹‰Ê</h1>
+<!-- ŒŸõŒ‹‰Ê‚ª‚ ‚é‚Æ‚È‚¢‚Æ‚«‚Å•ª‚¯‚½‚¢ -->
+<% if @movies.any?%>
+<div class="search-results">
+    <% @movies.each do |movie| %>
+      <div class="search-info">
+      <%= movie.name%>
+      </div>
+    <%end%>
+</div>
+<%else%>
+    <h1>‚È‚µ</h1>
+<%end%>

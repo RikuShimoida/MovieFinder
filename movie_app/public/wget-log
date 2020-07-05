@@ -1,0 +1,8 @@
+Will not apply HSTS. The HSTS database must be a regular and non-world-writable file.
+ERROR: could not open HSTS store at '/home/riku0513/.wget-hsts'. HSTS will be disabled.
+--2020-05-05 21:49:56--  https://www.google.com/search?q=%E6%98%A0%E7%94%BB%E3%80%80%E3%82%B7%E3%83%BC%E3%83%B3
+Resolving www.google.com (www.google.com)... 216.58.197.196, 2404:6800:4004:80e::2004
+Connecting to www.google.com (www.google.com)|216.58.197.196|:443... connected.
+HTTP request sent, awaiting response... 403 Forbidden
+2020-05-05 21:49:58 ERROR 403: Forbidden.
+

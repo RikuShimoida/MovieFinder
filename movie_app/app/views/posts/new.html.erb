@@ -1,0 +1,61 @@
+<h1>　登録画面</h1>
+
+<div class = "contents">
+
+<%= form_tag("/posts/create", method: "post") do %>
+
+
+<h4>
+【作品名】
+</h4>
+<input type="text" name="title">
+
+<p>
+<h4>
+【監督名】
+</h4>
+<input type="text" name="director">
+</p>
+
+<p>
+<h4>
+【出演俳優】
+</h4>
+<input type="text" name="actor1">
+<input type="text" name="actor2">
+<input type="text" name="actor3">
+</p>
+
+<div class = parameters>
+<input type="checkbox" name="impressedFlg" value="1">感動したい<br>
+<input type="checkbox" name="loveFlg" value="1">恋愛したい<br>
+<input type="checkbox" name="depressedFlg" value="1">落ち込んでいるときに見たい<br>
+<input type="checkbox" name="ForeignFlg" value="1">洋画が好き<br>
+<input type="checkbox" name="japanFlg" value="1">邦画が好き<br>
+<input type="checkbox" name="marvelFlg" value="1">マーベルが好き<br>
+<input type="checkbox" name="dcFlg" value="1">DCコミックが好き<br>
+<input type="checkbox" name="animeFlg" value="1">アニメ作品<br>
+<input type="checkbox" name="specialFlg" value="1">特撮作品<br>
+<input type="checkbox" name="musicalFlg" value="1">ミュージカル映画<br>
+<input type="checkbox" name="seriesFlg" value="1">シリーズもの<br>
+<input type="checkbox" name="sexyFlg" value="1">セクシー<br>
+<input type="checkbox" name="futuristicFlg" value="1">近未来的<br>
+<input type="checkbox" name="thrillFlg" value="1">スリルがある<br>
+<input type="checkbox" name="nonFictionFlg" value="1">ノンフィクション<br>
+<input type="checkbox" name="hintFlg" value="1">伏線が楽しめる<br>
+<input type="checkbox" name="mediaFlg" value="1">書籍のメディア化<br>
+<input type="checkbox" name="supernaturalFlg" value="1">超能力系<br>
+<input type="checkbox" name="disneyFlg" value="1">ディズニーが好き<br>
+<input type="checkbox" name="ghibliFlg" value="1">ジブリが好き<br>
+<input type="checkbox" name="usefulFlg" value="1">人生の役に立つ<br>
+<input type="checkbox" name="mysteriousFlg" value="1">ミステリアスな話が好き<br>
+<input type="checkbox" name="actionFlg" value="1">アクションが好き<br>
+<input type="checkbox" name="horrorFlg" value="1">ホラーものが好き<br>
+</div>
+
+<p>
+<input class = "save" type="submit" name="submit" value="保存">
+</p>
+
+<div>
+<% end %>
