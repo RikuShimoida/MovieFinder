@@ -218,7 +218,7 @@ var notFirst = 0;
 <div class = "contents">
 
 <div class="chrome" style="padding: 30px 0px 0px 0px; margin-top: 5px;"><span class="bar"> </span>
-<iframe src = "https://www.youtube.com/embed?listType=search&list=<%=movie.title + "　映画予告"%>"  width = "560"  height = "315" frameborder = " 0 " allowfullscreen= "allowfullscreen" ></iframe>
+<iframe src = "https://www.youtube.com/embed/listType=search&list=<%=movie.title + "　映画予告"%>"  width = "560"  height = "315" frameborder = " 0 " allowfullscreen= "allowfullscreen" ></iframe>
 </div>
 
 <h4>
@@ -229,7 +229,7 @@ var notFirst = 0;
 
 </div>
 
-<li class = "itemButton"><%= link_to("作品情報の編集", "/posts/show/#{movie.id}",  method: :get, class: "link") %></li>
+<li class = "itemButton"><%= link_to("作品情報の編", "/posts/show/#{movie.id}",  method: :get, class: "link") %></li>
 <li class = "itemButton"><u class = "destroy">作品の削除</u></li>
 
 <h4>
@@ -494,7 +494,7 @@ loopCnt++;
   <div class = "contents">
 
   <div class="chrome" style="padding: 30px 0px 0px 0px; margin-top: 5px;"><span class="bar"> </span>
-<iframe src = "https://www.youtube.com/embed?listType=search&list=<%=movie.title + "　映画予告"%>"  width = "560"  height = "315" frameborder = " 0 " allowfullscreen= "allowfullscreen" ></iframe>
+<iframe src = "https://www.youtube.com/embed?listType=search&list=<%=movie.title + "　映画予告"%>" & mute=1 & width = "560"  height = "315" frameborder = " 0 " allowfullscreen= "allowfullscreen" ></iframe>
 </div>
 
 
