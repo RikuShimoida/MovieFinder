@@ -3,7 +3,7 @@ $('.header_param').hover(function(){
 });
 
 
-const getNowPlayingURL = 'https://api.themoviedb.org/3/movie/now_playing?api_key=f10404a45468df92c746003d17f8442f&language=ja-JP&page=1'
+const getNowPlayingURL = "https://api.themoviedb.org/3/movie/now_playing?api_key=f10404a45468df92c746003d17f8442f&language=ja-JP&page=1";
 fetch(getNowPlayingURL)
 .then(response => {
   return response.json();
